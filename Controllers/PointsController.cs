@@ -26,6 +26,21 @@ namespace GeoQuiz.Controllers
             return View(await _context.Point.ToListAsync());
         }
 
+        
+        // GET: Points/ShowSearchForm
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
+
+        // POST: Points/ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
+        {
+            return View("Index", await _context.Point.Where( p => p.GeoQuestion.Contains(SearchPhrase) ).ToListAsync());
+        }
+
+        
+
         // GET: Points/Details/5
         public async Task<IActionResult> Details(int? id)
         {
