@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GeoQuiz.Data;
 using GeoQuiz.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GeoQuiz.Controllers
 {
@@ -60,6 +61,7 @@ namespace GeoQuiz.Controllers
         }
 
         // GET: Points/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -68,6 +70,7 @@ namespace GeoQuiz.Controllers
         // POST: Points/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,GeoQuestion,GeoAnswer")] Point point)
@@ -82,6 +85,7 @@ namespace GeoQuiz.Controllers
         }
 
         // GET: Points/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -100,6 +104,7 @@ namespace GeoQuiz.Controllers
         // POST: Points/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,GeoQuestion,GeoAnswer")] Point point)
@@ -133,6 +138,7 @@ namespace GeoQuiz.Controllers
         }
 
         // GET: Points/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -151,6 +157,7 @@ namespace GeoQuiz.Controllers
         }
 
         // POST: Points/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
